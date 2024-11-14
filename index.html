@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Spectrogram</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Required Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.6.0/webcomponents-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/polymer/3.4.1/polymer-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.15.0/tf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Audio Spectrogram</h1>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="start-stop-btn">Pause</button>
+                <button id="predict-btn">Record</button>
+                <button id="download">Download</button>
+            </div>
+
+            <div class="spectrogram-container">
+                <div id="spec-left" class="spec-nav">←</div>
+                <div id="spec-right" class="spec-nav">→</div>
+                <div id="spec-pred"></div>
+                <g-spectrogram-mini id="spectrogram">
+                    <canvas id="canvas"></canvas>
+                    <canvas id="labels"></canvas>
+                </g-spectrogram-mini>
+            </div>
+
+            <div class="predictions">
+                <div id="pred1" class="pred-bar"></div>
+                <div id="pred2" class="pred-bar"></div>
+                <div id="pred3" class="pred-bar"></div>
+                <div id="pred1_text" class="pred-text"></div>
+                <div id="pred2_text" class="pred-text"></div>
+                <div id="pred3_text" class="pred-text"></div>
+                <div id="predClass"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load your spectrogram component -->
+    <script src="g-spectrogram-mini.js"></script>
+</body>
+</html>
