@@ -27,17 +27,19 @@
     <div class="header-wrapper">
         <h2>Time-Delay Neural Network Demo</h2>
         <div class="btn-bar">
-          <div id="predict-btn" class="show-btn">Record Sample</div>
-          <div id="download" class="show-btn">Download</div>
-          <div id="start-stop-btn" class="show-btn">Start</div>
+            <div id="start-stop-btn" class="show-btn">Start</div>
+            <div id="predict-btn" class="show-btn">Record Sample</div>
+            <div id="download" class="show-btn">Download</div>
         </div>
       </div>
       
-      <div class="body-wrapper-index">
+    <div class="body-wrapper-index">
         <div class="spectrograms">
-          <div id="mini-spectrogram" class="spectrogram-wrapper-mini"></div>
+            <div class="spectrogram-wrapper-mini" id="mini-spectrogram">
+                <g-spectrogram-mini controls labels log oscillator speed="10"></g-spectrogram-mini>
+            </div>
         </div>
-      </div>
+    </div>
       
       <div class="custom-button-wrappers">
         <div id="spec-left" class="custom-btn">Left <--</div>

@@ -5,6 +5,18 @@
 
 <polymer-element name="g-spectrogram" attributes="controls log fftsize labels ticks oscillator speed color">
   <template>
+  <style>
+    canvas {
+      position: absolute;
+      width: 50%;
+      height: 35vh;
+      border: 1px solid #B1EDE8;
+    }
+    g-spectrogram-controls {
+      position: absolute;
+      /* border: 1px solid purple; */
+    }
+  </style>
     <canvas id="canvas"></canvas>
     <canvas id="labels"></canvas>
     <template if="{{controls}}">
@@ -28,9 +40,12 @@
   <style>
     canvas {
       position: absolute;
-      width: 50%;
-      height: 50vh;
-      margin-top: 0;
+      width: 65%;
+      height: 40vh;
+      border: 1px solid black;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     g-spectrogram-controls {
       position: absolute;
