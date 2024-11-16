@@ -11,60 +11,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 </head>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const startStopBtn = document.getElementById('start-stop-btn');
+    
+    startStopBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        this.textContent = this.classList.contains('active') ? 'Stop' : 'Start';
+    });
+});
+</script>
+
 <body>
     <!-- Header Section -->
     <div class="header-wrapper">
         <h2>Time-Delay Neural Network Demo</h2>
         <div class="btn-bar">
-            <div class="show-btn" id="predict-btn">Record Sample</div>
-            <div class="show-btn" id="download">Download</div>
-            <div class="show-btn" id="start-stop-btn">Pause</div>
+          <div id="predict-btn" class="show-btn">Record Sample</div>
+          <div id="download" class="show-btn">Download</div>
+          <div id="start-stop-btn" class="show-btn">Start</div>
         </div>
-        <div class="instructions">
-            <h3>Instructions</h3>
-            <p>
-                The <span class="highlight1">switch</span> button toggles between <span class="highlight2">start write file</span> 
-                and <span class="highlight3">record and sample</span> modes. 
-                <span class="highlight2">Start write file</span> records and saves the spectrogram to a file, while 
-                <span class="highlight3">record and sample</span> captures a recording, processes it, and outputs a prediction.
-                The latest sample is saved in the browser, and you can view the TDNN model's processing results by clicking the <span class="highlight4">explain</span> button.
-            </p>
-            <p id="debug-dump"></p>
-        </div>
-    </div>
-
-    <!-- Main Content Section -->
-    <div class="body-wrapper-index">
+      </div>
+      
+      <div class="body-wrapper-index">
         <div class="spectrograms">
-            <div class="spectrogram-wrapper" id="main-spectrogram">
-                <g-spectrogram controls labels log oscillator></g-spectrogram>
-            </div>
-            <div class="spectrogram-wrapper-mini" id="mini-spectrogram">
-                <g-spectrogram-mini controls labels log oscillator speed="10"></g-spectrogram-mini>
-            </div>
+          <div id="mini-spectrogram" class="spectrogram-wrapper-mini"></div>
         </div>
-
-        <!-- Predictions Section -->
-        <div class="predictions">
-            <div class="pred-outer-wrapper">
-                <ul class="pred-wrapper">
-                    <li>b <div id="pred1"></div><div id="pred1_text" class="pred-label">0</div></li>
-                    <li>d <div id="pred2"></div><div id="pred2_text" class="pred-label">0</div></li>
-                    <li>g <div id="pred3"></div><div id="pred3_text" class="pred-label">0</div></li>
-                </ul>
-            </div>
-            <div class="pred-class-wrapper">
-                Prediction: <span id="predClass"></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Custom Control Buttons -->
-    <div class="custom-button-wrappers">
-        <div class="custom-btn" id="spec-left">Left <--</div>
-        <div class="custom-btn" id="spec-right">Right --\> </div>
-        <div class="custom-btn" id="spec-pred">Predict</div>
-    </div>
+      </div>
+      
+      <div class="custom-button-wrappers">
+        <div id="spec-left" class="custom-btn">Left <--</div>
+        <div id="spec-right" class="custom-btn">Right --></div>
+        <div id="spec-pred" class="custom-btn">Predict</div>
+      </div>
 </body>
 
 </html>
