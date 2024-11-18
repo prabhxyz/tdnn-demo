@@ -404,25 +404,6 @@ Polymer('g-spectrogram-mini', {
       this.predictModel_noSegment();
     }
 
-    document.getElementById('download').onclick = () => {
-      console.log('downloading selected segment');
-      this.currDat = tf.zeros([16, 1], dtype='float32');
-      var link = document.createElement('a');
-      var data_pre = this.data_whole.arraySync();
-      var str = "";
-      for (row in data_pre) {
-        str += data_pre[row].toString();
-        str += '\n';
-      }
-      var data = new Blob([str], {type: 'text/plain'});
-      textFile = window.URL.createObjectURL(data);
-      console.log('File written successfully to', textFile);
-      link.href = textFile;
-      file_name = this.custom_start_time_ms.toString() + "data.txt"
-      link.download = file_name;
-      link.click();
-    }
-
     let predict_btn = document.getElementById('predict-btn');
 
     // predicting
