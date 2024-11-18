@@ -376,35 +376,15 @@ Polymer('g-spectrogram-mini', {
     document.getElementById('start-stop-btn').onclick = () => {
       if (this.stopped){
         this.stopped = false;
-        document.getElementById('predict-btn').style.color = "border: 3px solid var(--c2); var(--c2)";
         document.getElementById('start-stop-btn').innerHTML = "Pause";
       } else {
         this.stopped = true;
-        document.getElementById('predict-btn').style.color = "border: 3px solid var(--c1); var(--c1)";
         document.getElementById('start-stop-btn').innerHTML = "Resume";
         // data_whole shape: 16 times length
         // console.log("this data whole array sync", this.data_whole.arraySync());
         this.custom_start_time_ms = this.start_time_ms;
       }
     }
-    document.getElementById('spec-left').onclick = () => {
-      console.log('left clicked');
-      this.custom_start_time_ms -= 10;
-      this.predictModel_noSegment();
-    }
-
-    document.getElementById('spec-right').onclick = () => {
-      console.log('right clicked');
-      this.custom_start_time_ms += 10;
-      this.predictModel_noSegment();
-    }
-
-    document.getElementById('spec-pred').onclick = () => {
-      console.log('predicting!!');
-      this.predictModel_noSegment();
-    }
-
-    let predict_btn = document.getElementById('predict-btn');
 
     // predicting
     var currCol = this.extractFrequencies();
@@ -419,38 +399,9 @@ Polymer('g-spectrogram-mini', {
       this.data_whole = data_whole;
     }
 
-    document.getElementById('predict-btn').onclick = () => {
-      console.log('should reset height');
-      document.getElementById('pred1').style = "height: 1vh";
-      document.getElementById('pred2').style = "height: 1vh";
-      document.getElementById('pred3').style = "height: 1vh";
-      document.getElementById('pred1_text').innerHTML = "";
-      document.getElementById('pred2_text').innerHTML = "";
-      document.getElementById('pred3_text').innerHTML = "";
-      document.getElementById("predClass").innerHTML = "";
-      if (this.writing == false){
-        this.currDat = tf.zeros([16, 1], dtype='float32');
-        this.writing = true;
-        this.color = true;
-        document.getElementById('predict-btn').style.color = "border: 3px solid var(--c2); var(--c2)";
-        this.frames_since_last_coloured = 0;
-        this.data_whole = tf.zeros([16, 1], dtype='float32');
-      } else {
-        this.writing = false;
-        this.color = false;
-        document.getElementById('predict-btn').style.color = "border: 3px solid var(--c1); var(--c1)";
-        var data_pre = data_whole.arraySync();
-        this.predictModel(data_pre);
-        this.stopped = true;
-        document.getElementById('start-stop-btn').innerHTML = "Resume";
-        this.custom_start_time_ms = this.start_time_ms;
-      }
-    }
-
     if (this.stopped){
       document.getElementById('start-stop-btn').onclick = () => {
         this.stopped = false;
-        document.getElementById('predict-btn').style.color = "border: 3px solid var(--c2); var(--c2)";
         document.getElementById('start-stop-btn').innerHTML = "Pause";
       }
     }
