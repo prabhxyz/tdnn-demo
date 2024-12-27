@@ -1,27 +1,68 @@
+/* styles.css */
+
+/* Basic Variables */
 :root {
-  --primary: #81F4E1;
-  --secondary: #56CBF9;
-  --accent: #FF729F;
-  --neutral: #D3C4D1;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --primary: #2ecc71; /* green */
+  --danger:  #e74c3c; /* red */
+  --shadow:  0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-body {
+/* Reset + Basic Setup */
+html, body {
   margin: 0;
-  min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
   background: #f8f9fa;
-  color: black;
+  color: #000;
+}
+body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Layout */
+/* Header */
 .header-wrapper {
-  padding: 2rem;
+  padding: 1rem;
   background: white;
   box-shadow: var(--shadow);
   text-align: center;
+}
+.header-wrapper h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Button row */
+.btn-bar {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Start/Stop Spectrogram button */
+.spectro-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+/* Record button defaults to green */
+.record-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+  transition: all 0.2s ease;
 }
 
 /* Main content area */
@@ -33,11 +74,11 @@ body {
   padding: 2rem;
 }
 
-/* Spectrogram */
+/* Container for the spectrogram element */
 .spectrograms {
   width: 100%;
   max-width: 1000px;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   margin: auto;
 }
 
@@ -45,109 +86,17 @@ body {
   background: transparent;
 }
 
-/* Button Styles */
-.btn-bar {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.show-btn {
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid;
-  background: transparent;
-  min-width: 150px;
-}
-
-/* Button Variants */
-#predict-btn {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-#predict-btn:hover {
-  background: var(--primary);
-  color: white;
-}
-
-#download {
-  border-color: var(--neutral);
-  color: var(--neutral);
-}
-
-#download:hover {
-  background: var(--neutral);
-  color: white;
-}
-
-#start-stop-btn {
-  border-color: #2ecc71;
-  color: white;
-  background: #2ecc71;
-}
-
-#start-stop-btn.active {
-  background: #e74c3c;
-  border-color: #e74c3c;
-}
-
-/* Navigation Controls */
-.custom-button-wrappers {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 1rem;
-  background: white;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  z-index: 10;
-}
-
-.custom-btn {
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid var(--secondary);
-  background: transparent;
-  color: var(--secondary);
-  min-width: 120px;
-  text-align: center;
-}
-
-.custom-btn:hover {
-  background: var(--secondary);
-  color: white;
-  transform: translateY(-2px);
-}
-
+/* Responsive design */
 @media (max-width: 768px) {
   .btn-bar {
     flex-direction: column;
     align-items: center;
   }
-
-  .custom-button-wrappers {
-    width: calc(100% - 4rem);
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .show-btn, .custom-btn {
-    width: 100%;
-    max-width: 200px;
-  }
-
   .spectrograms {
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
+  }
+  .spectro-btn, .record-btn {
+    width: 100%;
+    max-width: 220px;
   }
 }

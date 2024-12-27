@@ -2,8 +2,8 @@
 <link rel="import" href="./g-spectrogram-controls.html">
 <link rel="import" href="./g-oscillator.html">
 <!-- 
-  This file declares both <g-spectrogram> and <g-spectrogram-mini>.
-  We keep it to preserve your older structure & references.
+  For reference, you had a g-spectrogram.html as well. 
+  This file specifically defines <g-spectrogram-mini>. 
 -->
 
 <polymer-element name="g-spectrogram" attributes="controls log fftsize labels ticks oscillator speed color">
@@ -80,6 +80,5 @@
       <g-oscillator log={{log}} speed={{speed}}></g-oscillator>
     </template>
   </template>
-  <!-- The "old" g-spectrogram-mini code below, unmodified. -->
   <script src="g-spectrogram-mini.js"></script>
 </polymer-element>

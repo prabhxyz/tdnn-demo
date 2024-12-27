@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- External resources -->
-    <script src="bower_components/platform/platform.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="import" href="g-spectrogram.html">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Time-Delay Neural Network Demo</title>
+  
+  <!-- Polymer platform polyfill for older browsers -->
+  <script src="bower_components/platform/platform.js"></script>
+  
+  <!-- Our main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- TensorFlow.js (if needed by g-spectrogram-mini) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  
+  <!-- Web Components for g-spectrogram & g-spectrogram-mini -->
+  <link rel="import" href="g-spectrogram.html">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const startStopBtn = document.getElementById('start-stop-btn');
-    
-    startStopBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        this.textContent = this.classList.contains('active') ? 'Stop' : 'Start';
-    });
-});
-</script>
-
 <body>
-    <!-- Header Section -->
-    <div class="header-wrapper">
-        <h2>Time-Delay Neural Network Demo</h2>
-        <div class="btn-bar">
-            <div id="start-stop-btn" class="show-btn">Start</div>
-        </div>
+  <!-- Header area with two separate buttons:
+       1) Start/Stop Spectrogram
+       2) Record
+  -->
+  <div class="header-wrapper">
+    <h2>Time-Delay Neural Network Demo</h2>
+    <div class="btn-bar">
+      <!-- This actually suspends/resumes the audioContext in index.js -->
+      <button id="startStopSpectrogram" class="spectro-btn">Start Spectrogram</button>
+      <!-- This toggles writing in g-spectrogram-mini -->
+      <button id="recordBtn" class="record-btn">Record</button>
     </div>
-      
-    <div class="body-wrapper-index">
-        <div class="spectrograms">
-            <div class="spectrogram-wrapper-mini" id="mini-spectrogram">
-                <g-spectrogram-mini controls labels log oscillator speed="10"></g-spectrogram-mini>
-            </div>
-        </div>
+  </div>
+  
+  <!-- Main Body: Contains the custom <g-spectrogram-mini> element -->
+  <div class="body-wrapper-index">
+    <div class="spectrograms">
+      <div class="spectrogram-wrapper-mini">
+        <!-- We assign an ID to reference in index.js -->
+        <g-spectrogram-mini 
+          id="miniSpec"
+          controls
+          labels
+          log
+          oscillator
+          speed="10"
+          style="width:100%; height:auto;"
+        >
+        </g-spectrogram-mini>
+      </div>
     </div>
-</body>
+  </div>
 
+  <!-- Our main script that wires up the buttons -->
+  <script src="index.js"></script>
+</body>
 </html>
